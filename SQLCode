@@ -1,0 +1,41 @@
+--Total Nike Sales in 2020 and 2021, collectively.
+SELECT SUM(Total_Sales) AS Total_Nike_Sales
+FROM NIKE_Sales;
+
+-- Total Sales by Year
+SELECT YEAR(Invoice_Date) AS Sales_Year, SUM(Total_Sales) AS Total_Sales
+FROM NIKE_Sales
+GROUP BY YEAR(Invoice_Date)
+ORDER BY Sales_Year;
+
+--Sales by U.S. States
+SELECT State, SUM(Total_Sales) AS Total_Sales
+FROM NIKE_Sales
+GROUP BY State
+ORDER BY Total_Sales DESC;
+
+--Sales by U.S. Cities
+SELECT City, SUM(Total_Sales) AS Total_Sales
+FROM NIKE_Sales
+GROUP BY City
+Order By Total_Sales Desc;
+
+--Sales by Month
+ SELECT YEAR(Invoice_Date) AS SalesYear, 
+		DATENAME(MONTH,Invoice_Date) AS SalesMonth, 
+		SUM(Total_Sales) AS TotalSales
+ FROM NIKE_Sales
+ GROUP BY YEAR(Invoice_Date), DATENAME(MONTH, Invoice_Date)
+ ORDER BY SalesYear, MIN(MONTH(Invoice_Date));
+
+ --Sales by Region
+ SELECT Region, SUM(Total_Sales) AS TotalSales
+ FROM NIKE_Sales
+ GROUP BY Region
+ ORDER BY TotalSales DESC;
+
+ --Sales by Retailer
+ SELECT Retailer, SUM(Total_Sales) AS TotalSales
+ FROM NIKE_Sales
+ GROUP BY Retailer
+ ORDER BY TotalSales DESC;
